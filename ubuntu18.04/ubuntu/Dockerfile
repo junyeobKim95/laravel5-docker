@@ -42,8 +42,8 @@ RUN apt-get install -y apache2 && \
         service apache2 start
 
 # # PHP 설치
-RUN apt-get install -y php libapache2-mod-php php-mysql
-RUN apt-get install -y php7.2 php-xml php-zip unzip php-curl
+RUN apt-get install -y php libapache2-mod-php
+RUN apt-get install -y php7.2 php-xml php-zip unzip php-curl php-mbstring php-iconv php-json php-mysql php-dev
 RUN apt-get install -y php-cli curl && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 

@@ -22,7 +22,11 @@ services:
       - "8200:8200"
       - "8300:8300"
     volumes:
-      - ./apache2/:/etc/apache2/
-      - ./php/:/etc/php
+      - ./apache2/sites-available/:/etc/apache2/sites-available/
+      - ./apache2/sites-enabled/:/etc/apache2/sites-enabled/
+      - ./apache2/apache2.conf:/etc/apache2/apache2.conf
+      - ./apache2/ports.conf:/etc/apache2/ports.conf
+      - ./php/7.2/apache2/php.ini:/etc/php/7.2/apache2/php.ini
+      - ./php/7.2/cli/php.ini:/etc/php/7.2/cli/php.ini
       - ./mysql/mysql.conf.d/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
     command: /sbin/init

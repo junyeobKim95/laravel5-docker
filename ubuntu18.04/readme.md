@@ -39,8 +39,8 @@ $ sudo chmod 644 /etc/mysql/mysql.conf.d/mysqld.cnf
 ~$ cp server.key server.key.origin
 ~$ openssl rsa -in server.key.origin -out server.key
 ~$ openssl x509 -req -days 750 -in server.csr -signkey server.key -out server.crt
-~$ cp server.key /etc/httpd/conf/
-~$ cp server.crt /etc/httpd/conf/
+~$ cp server.key /etc/apache2/
+~$ cp server.crt /etc/apache2/
 ```
 
 ## 6. laravel 실행
@@ -48,7 +48,17 @@ $ sudo chmod 644 /etc/mysql/mysql.conf.d/mysqld.cnf
 ~$ stage_w # /home/centos/dev/stage/web 경로로 이동
 web$ composer install
 web$ npm install --save-dev
-web$ npm run dev # 이 후 Front 소스를 개발 시 npm run watch로 실행
+web$ npm run prod # 이 후 Front 소스를 개발 시 npm run watch로 실행
+```
+※ 만약 다 설치 후 메인페이지까지 접속했는데 ajax api에서 500에러가 나타나면 pdo_mysql.so를 지우고 재설치해보세요
+```bash
+~$ wget https://www.php.net/distributions/php-7.2.24.tar.gz
+~$ tar -xvzf php-7.2.24.tar.gz
+~$ cd php-7.2.24/ext/pdo_mysql/
+ $ phpize
+ $ ./configure
+ $ make
+ $ sudo cp modules/pdo_mysql.so /usr/lib/php/20170718/
 ```
 
 # ETC

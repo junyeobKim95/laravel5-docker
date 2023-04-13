@@ -70,7 +70,7 @@ $ systemctl start httpd
 ~$ stage_w # /home/centos/dev/stage/web 경로로 이동
 web$ composer install
 web$ npm install --save-dev
-web$ npm run dev # 이 후 Front 소스를 개발 시 npm run watch로 실행
+web$ npm run prod # 이 후 Front 소스를 개발 시 npm run watch로 실행
 ```
 
 # ETC
