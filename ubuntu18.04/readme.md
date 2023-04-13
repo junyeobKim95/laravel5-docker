@@ -22,7 +22,7 @@ $ vi /etc/ssh/sshd_config
 # PermitRootLogin 부분을 yes로 변경
 # passwd root 명령어로 비밀번호 설정
 $ passwd root
-$ systemctl restart sshd
+$ service sshd restart
 ```
 ## 4. mysql 설정
 ```bash
@@ -43,12 +43,7 @@ $ sudo chmod 644 /etc/mysql/mysql.conf.d/mysqld.cnf
 ~$ cp server.crt /etc/httpd/conf/
 ```
 
-## 6. apache 시작
-```bash
-$ systemctl start httpd
-```
-
-## 7. laravel 실행
+## 6. laravel 실행
 ```bash
 ~$ stage_w # /home/centos/dev/stage/web 경로로 이동
 web$ composer install
