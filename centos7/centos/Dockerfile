@@ -1,4 +1,5 @@
-FROM centos:7.5.1804
+# FROM centos:7.5.1804
+FROM centos:8
 
 # -y 옵션은 설치여부 질문에 yes로 대답하라는 의미
 
@@ -51,12 +52,6 @@ RUN yum install python3-pip -y
 RUN yum install -y gcc-c++ make
 RUN curl -sL https://rpm.nodesource.com/setup_8.x | sudo -E bash -
 RUN yum install -y nodejs git openssl
-
-# jenkins && java 11 설치
-RUN sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
-RUN sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-RUN yum install -y java-11-openjdk-devel.x86_64 && yum install -y jenkins
-
 
 # 최종 권한 부여
 ADD /finnaly.sh /

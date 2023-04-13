@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  boosters:
+    hostname: ubuntu
+    # platform: linux/amd64
+    container_name: boostersUbuntu
+    build:
+      context: .
+      dockerfile: ./ubuntu/Dockerfile
+    privileged: true
+    user: root
+    # cgroup_parent: m1
+    ports:
+      - "80:80"
+      - "443:443"
+      - "3307:3306"
+      - "5222:22"
+      - "3000:3000"
+      - "8080:8080"
+      - "8100:8100"
+      - "8200:8200"
+      - "8300:8300"
+    volumes:
+      - ./apache2/:/etc/apache2/
+      - ./php/:/etc/php
+      - ./mysql/mysql.conf.d/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+    command: /sbin/init
