@@ -64,7 +64,8 @@ Ubuntu18.04 Apache2.4 php7.2 Mysql5.7 node8.10 python3.9.5
 ## description
 1. local에 파일을 두고 docker와 volumes을 맞추고 싶었지만 vendor, node_modules 파일들 때문에 페이지 렌더링 속도가 매우 느려 ssh로 접속해서 작업하는 방향으로 선택했습니다.
 2. SSL 적용 후에도 419 error 통신이면 라라벨 실행 경로를 777권한으로 설정하고 아파치 재시작 해보세요.
-3. 작업은 vscode 기준 remote-ssh 익스텐션을 이용해 개발을 하시면 됩니다.
+3. 작업은 vscode 기준 remote-ssh 익스텐션을 이용해 개발을 하시면 됩니다. https://inpa.tistory.com/entry/VSCode-%F0%9F%92%BD-Remote-SSH-%EC%82%AC%EC%9A%A9%EB%B2%95-AWS%EC%97%90-%EC%A0%91%EC%86%8D%ED%95%B4%EC%84%9C-%EC%BD%94%EB%94%A9%ED%95%98%EC%9E%90
+
 4. 파이썬 크롤링을 위해 크롬&크롬드라이버 설치는 따로 해줘야합니다. https://passwd.tistory.com/entry/CentOS-Chrome-%EB%B0%8F-Selenium-%EC%84%A4%EC%B9%98
 ```bash
 ~$ wget https://chrome-versions.com/google-chrome-stable-110.0.5481.77-1.deb
