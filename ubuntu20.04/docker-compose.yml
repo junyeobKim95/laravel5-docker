@@ -3,14 +3,14 @@ version: "3.8"
 services:
   boosters:
     hostname: ubuntu
-    # platform: linux/amd64
+    #platform: linux/amd64 # win/mac win 주석o mac 주석x
     container_name: boostersUbuntu
     build:
       context: .
       dockerfile: ./ubuntu/Dockerfile
     privileged: true
     user: root
-    # cgroup_parent: m1
+    #cgroup_parent: m1 # win/mac win 주석o mac 주석x
     ports:
       - "80:80"
       - "443:443"
@@ -28,5 +28,5 @@ services:
       - ./apache2/ports.conf:/etc/apache2/ports.conf
       - ./php/7.2/apache2/php.ini:/etc/php/7.2/apache2/php.ini
       - ./php/7.2/cli/php.ini:/etc/php/7.2/cli/php.ini
-      - ./mysql/mysql.conf.d/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+      - ./mysql/mysql.conf.d/mysqld.cnf:/etc/mysql/mariadb.conf.d/50-server.cnf
     command: /sbin/init

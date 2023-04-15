@@ -1,7 +1,9 @@
-# FROM centos:7.5.1804
-FROM centos:8
+FROM centos:7.5.1804
 
 # -y 옵션은 설치여부 질문에 yes로 대답하라는 의미
+
+# systemd를 사용하기 위한 설정
+ENV container docker
 
 # sudo 권한 설치
 RUN yum update -y

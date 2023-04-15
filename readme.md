@@ -3,8 +3,8 @@
 2. centos7 환경의 문제로 보이며 window에서는 그래도 실행되다가 window업데이트와 동시에 막힘
 3. centos는 2024년에 지원종료 예정이라 그냥 히스토리 파일로 작성됨
 
-# ubuntu18.04
-1. 잘 실행됨
+# ubuntu20.04
+1. window, mac에서 아파치와 php 설정이 살짝 다르게 해야되는거 같은데 win/mac 주석 검색 후 봐꿔서 설정필요
 
 # Enviroment
 Apache2.4 php7.2 Mysql5.7 node8.10 python3.9.5
