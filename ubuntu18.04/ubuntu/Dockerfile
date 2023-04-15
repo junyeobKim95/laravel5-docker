@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 ENV container docker
 # 비대화형 설치
@@ -28,14 +28,20 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 RUN systemctl enable ssh
 RUN apt-get install -y cron
 
-# MariaDB 10.3 설치
-RUN apt-get install -y mariadb-server-10.3
+# MySQL 5.7 설치
+RUN apt-get install -y mysql-server-5.7
 
-# MariaDB Configuration
-RUN sed -i 's/bind-address/#bind-address/' /etc/mysql/mariadb.conf.d/50-server.cnf
-RUN sed -i 's/skip-networking/#skip-networking/' /etc/mysql/mariadb.conf.d/50-server.cnf
+# MySQL Configuration
+RUN sed -i 's/bind-address/#bind-address/' /etc/mysql/mysql.conf.d/mysqld.cnf
+RUN sed -i 's/skip-networking/#skip-networking/' /etc/mysql/mysql.conf.d/mysqld.cnf
 RUN service mysql start && \
     mysql -u root -e "GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY '1234'; FLUSH PRIVILEGES;"
+
+# MariaDB Configuration
+# RUN sed -i 's/bind-address/#bind-address/' /etc/mysql/mariadb.conf.d/50-server.cnf
+# RUN sed -i 's/skip-networking/#skip-networking/' /etc/mysql/mariadb.conf.d/50-server.cnf
+# RUN service mysql start && \
+#     mysql -u root -e "GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY '1234'; FLUSH PRIVILEGES;"
 
 # apache 설치
 RUN apt-get install -y apache2 && \
@@ -68,14 +74,13 @@ RUN cd /usr/local/bin && \
         wget https://bootstrap.pypa.io/get-pip.py && \
         python3.9 get-pip.py
 
-# nodjs12.x && git 설치
+# nodjs8.x && git 설치
 RUN apt-get install -y git
-RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 RUN apt-get install -y nodejs
 
 # Firefox 설치 (mac m1칩에서 크롬으로 selenium이 불가능해 firefox이용)
-RUN apt install firefox
-RUN apt install firefox-geckodriver
+RUN apt install -y firefox firefox-geckodriver
 
 # 최종 권한 부여
 ADD /finnaly.sh /

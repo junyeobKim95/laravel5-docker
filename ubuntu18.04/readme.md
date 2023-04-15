@@ -23,13 +23,14 @@ $ service sshd restart
 # 1. mysqld.cnf 권한 변경
 $ sudo chmod 644 /etc/mysql/mysql.conf.d/mysqld.cnf
 ```
-## 5. Git Repository 연결
-1. 모든 소스를 각 폴더에 PULL
+## 5. Git Repository 연결 && env uploads
+1. 모든 소스를 각 폴더에 PULL && env파일 업로드
 ```bash
 https$ git pull origin dev
 process$ git pull origin dev
 etl$ git pull origin dev
 settlement_crawling$ git pull origin dev
+# env 파일 업로드하세요
 ```
 ## 6. HTTPS 설정
 1. localhost에서 SSL를 적용해야합니다. 도커로 Ubuntu 환경이 구성되면 직접 터미널에서 적용하시면 됩니다.
@@ -43,12 +44,14 @@ settlement_crawling$ git pull origin dev
 ~$ cp server.key /etc/apache2/
 ~$ cp server.crt /etc/apache2/
 ```
-## 7. laravel 실행
+## 7. laravel 실행 및 아파치 재시작
 ```bash
-~$ stage_w # /home/centos/dev/stage/https 경로로 이동
+~$ stage_h # /home/centos/dev/stage/https 경로로 이동
 https$ composer install
 https$ npm install --save-dev
 https$ npm run prod # 이 후 Front 소스를 개발 시 npm run watch로 실행
+stage$ chmod -R 777 https/
+stage$ service apache2 restart 
 ```
 ※ 만약 다 설치 후 메인페이지까지 접속했는데 ajax api에서 500에러가 나타나면 pdo_mysql.so를 지우고 재설치해보세요
 ```bash
@@ -60,13 +63,15 @@ https$ npm run prod # 이 후 Front 소스를 개발 시 npm run watch로 실행
  $ make
  $ sudo cp modules/pdo_mysql.so /usr/lib/php/20170718/
 ```
-## 8. python3 라이브러리 설치
+## 8. python3 라이브러리 설치 및 firefox 설정
 ```bash
 settlement-crawling$ python3 -m pip install -r requirements.txt
+$ sudo vi /etc/firefox/syspref.js
+pref("dom.webgpu.enabled", true); # 추가
 ```
 # ETC
 ## enviroment
-ubuntu20.04 Apache2.4 php7.2 Mysql5.7 node12.10 python3.9.5
+ubuntu18.04 Apache2.4 php7.2 Mysql5.7 node8 python3.9.5
 
 ## port
 1. 80 웹서버
@@ -88,4 +93,3 @@ https://passwd.tistory.com/entry/CentOS-Chrome-%EB%B0%8F-Selenium-%EC%84%A4%EC%B
 ~$ apt-get install -y openjdk-8-jdk jenkins
 ~$ service jenkins start
 ```
-6. 운영서버는 mysql5.7 이지만 ubuntu20 버전은 기본적으로 mysql5.7 > mariaDB10.3으로 설치가 되지만 거의 모든 부분이 동일함
