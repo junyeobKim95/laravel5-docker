@@ -28,7 +28,7 @@ $ sudo chmod 644 /etc/mysql/mysql.conf.d/mysqld.cnf
 ```bash
 https$ git pull origin dev
 process$ git pull origin dev
-etl$ git pull origin dev
+settlement$ git pull origin dev
 settlement_crawling$ git pull origin dev
 # env 파일 업로드하세요
 ```
