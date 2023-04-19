@@ -16,7 +16,7 @@ RUN apt-get install -y net-tools wget
 # 한국 시간으로 설정 및 ko_KR 설정
 ENV TZ Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-RUN apt-get install language-pack-ko && locale-gen ko_KR.UTF-8
+RUN apt-get install -y language-pack-ko && locale-gen ko_KR.UTF-8
 
 # 작업 경로 생성
 ADD /init.sh /
