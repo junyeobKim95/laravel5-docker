@@ -3,14 +3,16 @@ version: "3.8"
 services:
   boosters:
     hostname: ubuntu
-    platform: linux/amd64 # win/mac win 주석o mac 주석x
+    # platform: linux/amd64 # win/mac win 주석o mac 주석x
     container_name: boostersUbuntu
     build:
       context: .
       dockerfile: ./ubuntu/Dockerfile
     privileged: true
     user: root
-    cgroup_parent: m1 # win/mac win 주석o mac 주석x
+    stdin_open: true
+    tty: true
+    # cgroup_parent: m1 # win/mac win 주석o mac 주석x
     ports:
       - "80:80"
       - "443:443"
